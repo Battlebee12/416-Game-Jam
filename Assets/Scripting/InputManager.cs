@@ -16,4 +16,8 @@ public class InputManager : MonoBehaviour
     public bool GetJumping2d(){
         return Input.GetKey(KeyCode.Space);
     }
+
+    public bool IsShooting(){
+        return Input.GetKeyDown(KeyCode.F);
+    }
 }
