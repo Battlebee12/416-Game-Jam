@@ -7,7 +7,7 @@ public class GunController : MonoBehaviour
 
     [SerializeField] private float minTimeBtwShots;
 
-    [SerializeField] private GameObject ballPrefab;
+    [SerializeField] private BallSo ballSO;
     [SerializeField] private Transform ballSpawnPostion;
         [SerializeField] private float speed;
 
@@ -22,7 +22,7 @@ public class GunController : MonoBehaviour
     {
         bool isShotting = inputManager.IsShooting();
         if (isShotting){
-            BallController.SpawnProjectile(ballPrefab,ballSpawnPostion.position,gameObject.transform.right,speed);
+            BallController.SpawnProjectile(ballSO,ballSpawnPostion.position,gameObject.transform.right,speed);
             
         }
 

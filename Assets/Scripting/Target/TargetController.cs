@@ -1,12 +1,13 @@
 using UnityEngine;
 
-public class Target : MonoBehaviour
+public class TargetController : MonoBehaviour
 {
     public float maxhealth = 100f;
     public float currentHealth;
 
     //1 or 2 to identify which player target it is
     public int playerID;
+    [SerializeField] SpriteRenderer tempRend;
 
     
     void Start()
@@ -33,7 +34,7 @@ public class Target : MonoBehaviour
     {
         //change colour based on health %
         float healthPercentage = currentHealth / maxhealth;
-        GetComponent<Renderer>().material.color = Color.Lerp(Color.red, Color.green, healthPercentage);
+        tempRend.material.color = Color.Lerp(Color.red, Color.green, healthPercentage);
     }
 
     //getter for health
