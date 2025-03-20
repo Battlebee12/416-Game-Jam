@@ -274,6 +274,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gun
       objectReference: {fileID: 0}
+    - target: {fileID: 3445680441402944133, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4434366887690502902, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
       propertyPath: speed
       value: 20
@@ -289,6 +293,10 @@ PrefabInstance:
     - target: {fileID: 6485080718032738965, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6485782561577837349, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6822156295230508920, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
       propertyPath: m_LocalScale.x
@@ -341,6 +349,10 @@ PrefabInstance:
     - target: {fileID: 6822156295230508920, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8023389700002578250, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
