@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.13105722, g: 0.30396926, b: 0.8792453, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 1969714096711736280}
   - component: {fileID: 7644113198842667049}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Player2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,6 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39a49c46ee09fff41bb83d881037ec7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isplayer2: 1
 --- !u!114 &8484100662494814606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,6 +278,10 @@ PrefabInstance:
       propertyPath: speed
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 4434366887690502902, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
+      propertyPath: ballSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 1b744b48a1f88d049b7bb6e97db6ea26, type: 2}
     - target: {fileID: 4434366887690502902, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
       propertyPath: inputManager
       value: 

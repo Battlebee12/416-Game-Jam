@@ -5,8 +5,8 @@ using System.Collections;
 public class GameManager : SingletonMonoBehavior<GameManager>
 {
     
-    public Target player1Target;
-    public Target player2Target;
+    public TargetController player1Target;
+    public TargetController player2Target;
 
     public float roundTime = 60f;
     private float timer;
