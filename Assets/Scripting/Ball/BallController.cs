@@ -34,6 +34,7 @@ public class BallController : MonoBehaviour
             if(collision.gameObject.CompareTag("TARGET2")){
                 Debug.Log("Target Collision happened");
                 collision.gameObject.GetComponent<TargetController>().TakeDamage(damage);
+                Destroy(gameObject);
             }
             
 
