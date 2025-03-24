@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TargetController : MonoBehaviour
 {
@@ -8,9 +9,12 @@ public class TargetController : MonoBehaviour
     //1 or 2 to identify which player target it is
     public int playerID;
     [SerializeField] SpriteRenderer tempRend;
-    
 
-    
+    // Create a UnityEvent that takes a float (the amount of damage taken)
+    public UnityEvent<float> OnDamageTaken;
+    // Create a UnityEvent that is invoked when the target is destroyed
+    public UnityEvent<TargetController> OnTargetDestroyed; // Pass the TargetController itself
+
     void Start()
     {
         //set health to max at start of round
@@ -25,15 +29,25 @@ public class TargetController : MonoBehaviour
         //Visual feedback (colour change?)
         UpdateVisuals();
 
-        if(currentHealth <=0)
+        // Invoke the UnityEvent, passing the damage amount
+        OnDamageTaken?.Invoke(damage);
+
+        if (currentHealth <= 0)
         {
-            //target Destroyed
+            // Target Destroyed
+            OnTargetDestroyed?.Invoke(this); // Invoke the OnTargetDestroyed event, passing this instance
             Destroy(gameObject);
         }
     }
-    void UpdateVisuals()
+    public void UpdateVisuals()
     {
         //change colour based on health %
+        float healthPercentage = currentHealth / maxhealth;
+        tempRend.material.color = Color.Lerp(Color.red, Color.green, healthPercentage);
+    }
+
+    private void UpdateVisualsInternal() // Kept private
+    {
         float healthPercentage = currentHealth / maxhealth;
         tempRend.material.color = Color.Lerp(Color.red, Color.green, healthPercentage);
     }
