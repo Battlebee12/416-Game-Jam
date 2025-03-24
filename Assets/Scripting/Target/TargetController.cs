@@ -8,6 +8,7 @@ public class TargetController : MonoBehaviour
     //1 or 2 to identify which player target it is
     public int playerID;
     [SerializeField] SpriteRenderer tempRend;
+    
 
     
     void Start()

@@ -15,7 +15,7 @@ public class InputManager : MonoBehaviour
     {
         if(isplayer2){
             jump = KeyCode.UpArrow;
-            shoot = KeyCode.RightControl;
+            shoot = KeyCode.Slash;
             right = KeyCode.RightArrow;
             left = KeyCode.LeftArrow;
             

@@ -272,6 +272,7 @@ GameObject:
   - component: {fileID: 6822156295230508920}
   - component: {fileID: 5260699424355049035}
   - component: {fileID: 4434366887690502902}
+  - component: {fileID: -3636848665765598208}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -323,12 +324,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2396f1a665a197343be87aaf1a3b765d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 0}
+  inputManager: {fileID: -3636848665765598208}
   maxAmmo: 0
   minTimeBtwShots: 0
-  ballPrefab: {fileID: 5607853286017541203, guid: 637e3a09c61e1564287b86801a7508b0, type: 3}
+  ballSO: {fileID: 0}
   ballSpawnPostion: {fileID: 6485080718032738965}
   speed: 5
+--- !u!114 &-3636848665765598208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3267067549249120037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39a49c46ee09fff41bb83d881037ec7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isplayer2: 0
 --- !u!1 &3445680441402944133
 GameObject:
   m_ObjectHideFlags: 0
