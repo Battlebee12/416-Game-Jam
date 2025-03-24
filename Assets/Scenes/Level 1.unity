@@ -309,6 +309,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player1
       objectReference: {fileID: 0}
+    - target: {fileID: 8484100662494814606, guid: 966059b2ee156c14d927e557b4edce89, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1507805526}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -888,6 +892,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player2
       objectReference: {fileID: 0}
+    - target: {fileID: 6593727275113065432, guid: 65794df821def6b47a2437f4770797ed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8646048464071012461, guid: 65794df821def6b47a2437f4770797ed, type: 3}
       propertyPath: isplayer2
       value: 1
@@ -897,6 +905,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65794df821def6b47a2437f4770797ed, type: 3}
+--- !u!95 &1507805526 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 308242687256466384, guid: 966059b2ee156c14d927e557b4edce89, type: 3}
+  m_PrefabInstance: {fileID: 298432780}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
