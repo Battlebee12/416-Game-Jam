@@ -3,29 +3,37 @@ using UnityEngine;
 public class GunController : MonoBehaviour
 {
     [SerializeField] private InputManager inputManager;
-    [SerializeField] private int maxAmmo;
-
+    [SerializeField] private int maxAmmo = 1;
+    [SerializeField] private float duration = 5f;
     [SerializeField] private float minTimeBtwShots;
 
     [SerializeField] private BallSo ballSO;
     [SerializeField] private Transform ballSpawnPostion;
-        [SerializeField] private float speed;
+    [SerializeField] private float speed;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    private bool coolDown = false;
+    private float coolDownTimer = 0f;
 
     // Update is called once per frame
     void Update()
     {
-        bool isShotting = inputManager.IsShooting();
-        if (isShotting){
-            BallController.SpawnProjectile(ballSO,ballSpawnPostion.position,gameObject.transform.right,speed);
-            
+        if(coolDown){
+            coolDownTimer -= Time.deltaTime;
+            if(coolDownTimer < 0){
+                coolDown = false;
+                maxAmmo = 3;
+            }
         }
-
-        
+        else{
+        bool isShooting = inputManager.IsShooting();
+        if (isShooting && maxAmmo > 0){
+            BallController.SpawnProjectile(ballSO,ballSpawnPostion.position,gameObject.transform.right,speed);
+            maxAmmo--;
+        }
+            if(maxAmmo <= 0){
+                coolDown = true;
+                coolDownTimer = duration;
+            }
+        }
     }
 }
