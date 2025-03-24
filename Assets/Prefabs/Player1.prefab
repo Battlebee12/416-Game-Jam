@@ -270,6 +270,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6464509452002220458}
     m_Modifications:
+    - target: {fileID: 2957382915358582169, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
+      propertyPath: maxAngle
+      value: 190
+      objectReference: {fileID: 0}
+    - target: {fileID: 2957382915358582169, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
+      propertyPath: minAngle
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2957382915358582169, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
+      propertyPath: rotationSpeed
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 3267067549249120037, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
       propertyPath: m_Name
       value: Gun
