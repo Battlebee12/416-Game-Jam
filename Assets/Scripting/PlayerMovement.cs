@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEditor.Callbacks;
 using UnityEngine;
 
@@ -53,6 +54,18 @@ public class PlayerMovement : MonoBehaviour
 
 
         }
+        bool is_attacking = inputManager.IsShooting();
+        if (is_attacking){
+            // animator.SetBool("A",true);
+            animator.SetTrigger("ATTACK");
+           // StartCoroutine(ResetTrigger());
+        }
+
+    }
+    private IEnumerator ResetTrigger()
+    {
+        yield return new WaitForSeconds(0.3f); // Wait for 0.3 seconds
+        animator.ResetTrigger("ATTACK");
     }
 
 }

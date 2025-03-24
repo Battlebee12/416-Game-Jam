@@ -63,5 +63,6 @@ public class BallController : MonoBehaviour
         Vector2 dir = UnityEngine.Random.insideUnitCircle.normalized;
         SpawnProjectile(ballPrefab,Vector2.zero,dir,speed);
     }
+    
 
 }
