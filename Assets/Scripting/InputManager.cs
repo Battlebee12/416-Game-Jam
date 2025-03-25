@@ -34,7 +34,7 @@ public class InputManager : MonoBehaviour
     }
 
     public bool GetJumping2d(){
-        return Input.GetKey(jump);
+        return Input.GetKeyDown(jump);
     }
 
     public bool IsShooting(){
