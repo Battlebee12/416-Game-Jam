@@ -34,6 +34,7 @@ public class BallController : MonoBehaviour
             if(collision.gameObject.CompareTag("TARGET2")){
                 Debug.Log("Target Collision happened");
                 collision.gameObject.GetComponent<TargetController>().TakeDamage(damage);
+                Destroy(gameObject);
             }
             
 
@@ -57,11 +58,15 @@ public class BallController : MonoBehaviour
 
     public static void SpawnProjectile(BallSo ballPrefab, Vector2 postion, Vector2 direction, float speed){
         GameObject ball = Instantiate(ballPrefab.Ball,postion,quaternion.identity);
+        ball.tag = "Ball";
+        ball.layer = LayerMask.NameToLayer("Ball");
         ball.GetComponent<BallController>().launch(speed,direction);
+        Debug.Log("Spawned Ball:" + ball.tag);
     }
     public static void SpawnAtOrigin(BallSo ballPrefab, float speed){
         Vector2 dir = UnityEngine.Random.insideUnitCircle.normalized;
         SpawnProjectile(ballPrefab,Vector2.zero,dir,speed);
     }
+    
 
 }

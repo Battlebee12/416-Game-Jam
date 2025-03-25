@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class GunController : MonoBehaviour
@@ -27,7 +28,8 @@ public class GunController : MonoBehaviour
         else{
         bool isShooting = inputManager.IsShooting();
         if (isShooting && maxAmmo > 0){
-            BallController.SpawnProjectile(ballSO,ballSpawnPostion.position,gameObject.transform.right,speed);
+            StartCoroutine(ResetTrigger());
+            //BallController.SpawnProjectile(ballSO,ballSpawnPostion.position,gameObject.transform.right,speed);
             maxAmmo--;
         }
             if(maxAmmo <= 0){
@@ -35,5 +37,11 @@ public class GunController : MonoBehaviour
                 coolDownTimer = duration;
             }
         }
+    }
+     private IEnumerator ResetTrigger()
+    {
+        yield return new WaitForSeconds(0.15f); // Wait for 0.3 seconds
+        BallController.SpawnProjectile(ballSO,ballSpawnPostion.position,gameObject.transform.right,speed);
+        
     }
 }

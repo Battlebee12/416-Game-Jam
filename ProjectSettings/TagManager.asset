@@ -6,6 +6,8 @@ TagManager:
   tags:
   - TARGET
   - TARGET2
+  - Ball
+  - InvisibleWall
   layers:
   - Default
   - TransparentFX
@@ -15,9 +17,9 @@ TagManager:
   - UI
   - Ground
   - front
-  - 
-  - 
-  - 
+  - Player
+  - Ball
+  - InvisibleWall
   - 
   - 
   - 
