@@ -5,17 +5,17 @@ public class ArrowRotator : MonoBehaviour
     public Transform targetObject;     // The object that should rotate to face the arrow
     public float rotationSpeed = 200f;  // Speed at which the arrow rotates (degrees per second)
     public float radius = 2f;          // Distance between the arrow and the object
-    [SerializeField] private float minAngle = -10f;
-   [SerializeField]  private float maxAngle = 60f;
+    private float minAngle = -10f;
+    private float maxAngle = 60f;
     private float currentAngle = 0f;   // Tracks the arrow's rotation angle
-    [SerializeField] private bool rotatingClockwise = true; //Tracks rotation direction
+    private bool rotatingClockwise = true; //Tracks rotation direction
     [SerializeField] private bool isplayer2 = false;
 
     void Start(){
             if(isplayer2){
-                // currentAngle = 180f;
-                // minAngle = 120f;
-                // maxAngle = 190f;
+                currentAngle = 180f;
+                minAngle = 120f;
+                maxAngle = 190f;
             }
         }
 
