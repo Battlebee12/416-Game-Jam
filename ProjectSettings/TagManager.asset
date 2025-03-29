@@ -8,6 +8,7 @@ TagManager:
   - TARGET2
   - Ball
   - InvisibleWall
+  - Spike
   layers:
   - Default
   - TransparentFX
