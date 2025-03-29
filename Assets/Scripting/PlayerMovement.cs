@@ -61,6 +61,14 @@ public class PlayerMovement : MonoBehaviour
            // StartCoroutine(ResetTrigger());
         }
 
+    public void OnCollisionEnter2D(Collision2D collision){
+            if(collision.gameObject.CompareTag("TARGET")){
+                    Debug.Log("Target Collision happened");
+                    collision.gameObject.GetComponent<TargetController>().TakeDamage(damage);
+                    Destroy(gameObject);
+                }
+    }
+
     }
     private IEnumerator ResetTrigger()
     {
