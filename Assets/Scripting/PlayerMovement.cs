@@ -61,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
            // StartCoroutine(ResetTrigger());
         }
 
+
     }
     private IEnumerator ResetTrigger()
     {

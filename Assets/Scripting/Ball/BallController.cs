@@ -36,6 +36,11 @@ public class BallController : MonoBehaviour
                 collision.gameObject.GetComponent<TargetController>().TakeDamage(damage);
                 Destroy(gameObject);
             }
+
+            if(collision.gameObject.CompareTag("Spike")){
+                Debug.Log("Spike destroyed ball!");
+                Destroy(gameObject);
+            }
             
 
         }
@@ -43,9 +48,15 @@ public class BallController : MonoBehaviour
             if(collision.gameObject.CompareTag("TARGET")){
                 Debug.Log("Target Collision happened");
                 collision.gameObject.GetComponent<TargetController>().TakeDamage(damage);
+                Destroy(gameObject);
             }
             if(collision.gameObject.CompareTag("TARGET2")){
                 //collision.gameObject.GetComponent<TargetController>().TakeDamage(damage);
+            }
+
+            if(collision.gameObject.CompareTag("Spike")){
+                Debug.Log("Spike destroyed ball!");
+                Destroy(gameObject);
             }
 
         }
