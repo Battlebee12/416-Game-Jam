@@ -13,7 +13,10 @@ public class TargetController : MonoBehaviour
     // Create a UnityEvent that takes a float (the amount of damage taken)
     public UnityEvent<float> OnDamageTaken;
     // Create a UnityEvent that is invoked when the target is destroyed
-    public UnityEvent<TargetController> OnTargetDestroyed; // Pass the TargetController itself
+    public UnityEvent OnTargetDestroyed;
+
+    private bool targetDestroyedInvoked = false;
+
 
     void Start()
     {
@@ -23,6 +26,7 @@ public class TargetController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        Debug.Log("Target " + gameObject.name + " took damage: " + damage);
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0f, maxhealth); //prevent negative health
 
@@ -32,10 +36,12 @@ public class TargetController : MonoBehaviour
         // Invoke the UnityEvent, passing the damage amount
         OnDamageTaken?.Invoke(damage);
 
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && !targetDestroyedInvoked)
         {
             // Target Destroyed
-            OnTargetDestroyed?.Invoke(this); // Invoke the OnTargetDestroyed event, passing this instance
+            Debug.Log("Target " + gameObject.name + " destroyed. Invoking OnTargetDestroyed.");
+            OnTargetDestroyed?.Invoke(); // Invoke the OnTargetDestroyed event (no parameter)
+            targetDestroyedInvoked = true;
             Destroy(gameObject);
         }
     }

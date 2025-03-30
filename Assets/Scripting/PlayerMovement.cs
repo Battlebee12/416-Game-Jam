@@ -25,6 +25,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("roundEnded: " + GameManager.Instance.roundEnded);
+
+        // Check if the round has ended
+        if (GameManager.Instance.roundEnded)
+        {
+            rb.linearVelocity = Vector2.zero; // Stop any existing movement
+            animator.SetFloat("SPEED", 0f); // Stop movement animation
+            return; // Exit the Update method, preventing further input processing
+        }
+
         int movement_Int = inputManager.GetMovement2d();
         bool isJumping = inputManager.GetJumping2d();
 

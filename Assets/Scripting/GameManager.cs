@@ -2,66 +2,82 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : SingletonMonoBehavior<GameManager>
 {
     
     public TargetController player1Target;
     public TargetController player2Target;
-
-    public float roundTime = 60f;
-    private float timer;
-
-    public Text timerText;
-    public Text player1ScoreText;
-    public Text player2ScoreText;
-
+    
     private int player1Score = 0;
     private int player2Score = 0;
 
-    private bool roundEnded = false; // Flag to prevent multiple end-of-round calls
+    private bool _roundEnded = false;
+    
+    public UnityEvent OnRoundEnded = new UnityEvent();
+
+    public RoundManagerUI roundUI;
+    public RoundTimerUI roundTimerUI;
+
+    public string[] roundScenes = { "Level1", "Level2", "Level3", "Level4" }; // Scene names
+    private int currentRoundIndex = 0;
+
+    protected override void Awake()
+    {
+        base.Awake(); // Call SingletonMonoBehavior's Awake()
+
+        if (Instance != this)
+        {
+            return; // Singleton already set up
+        }
+
+        DontDestroyOnLoad(gameObject); // Make GameManager persist
+        Debug.Log("GameManager Awake called");
+    }
 
     void Start()
     {
-        timer = roundTime;
-        UpdateUI();
-
-        // Subscribe to the OnDamageTaken events (optional, but could be used for other effects)
-        if (player1Target != null)
-        {
-            player1Target.OnDamageTaken.AddListener(OnPlayerDamaged);
-            // Also subscribe to the OnDestroy event to detect when a target is destroyed
-            player1Target.gameObject.GetComponent<TargetController>().OnTargetDestroyed.AddListener(OnTargetDestroyed);
-        }
-        if (player2Target != null)
-        {
-            player2Target.OnDamageTaken.AddListener(OnPlayerDamaged);
-            // Also subscribe to the OnDestroy event
-            player2Target.gameObject.GetComponent<TargetController>().OnTargetDestroyed.AddListener(OnTargetDestroyed);
-        }
+        Debug.Log("GameManager Start called");
+        roundUI.UpdateUIScore(player1Score, player2Score);
+        FindTargets();
+        roundTimerUI.OnTimerEnd.AddListener(EndRoundByTimer); // Change EndRound function to EndRoundByTimer
     }
 
-    void Update()
+    public bool roundEnded
     {
-        if (roundEnded) return; // Don't update timer if round has ended
-
-        timer -= Time.deltaTime;
-
-        if (timer <= 0f)
-        {
-            EndRound();
-        }
-
-        UpdateUI();
+        get { return _roundEnded; }
+        private set { _roundEnded = value; }
     }
 
     void EndRound()
     {
-        if (roundEnded) return;
         roundEnded = true;
+        Debug.Log("GameManager: EndRound called. roundEnded: " + roundEnded);
+        
+        CalculateRoundWinner();
 
-        Debug.Log("Round Ended!");
+        Debug.Log("GameManager: Calling roundUI.EndRound()");
+        roundUI.EndRound("Round Ended!");
+        roundUI.UpdateUIScore(player1Score, player2Score);
 
+        OnRoundEnded.Invoke();
+
+        StartCoroutine(PrepareNextRound());
+    }
+
+    void EndRoundByTimer() 
+    {
+        if (!roundEnded) //Only call EndRound by the timer, if the game has not already ended.
+        {
+            EndRound();
+        }
+    }
+
+    void CalculateRoundWinner()
+    {
+        Debug.Log("GameManager CalculateRoundWinner called");
         if (player1Target == null && player2Target != null)
         {
             Debug.Log("Player 2 wins by destroying Player 1's target!");
@@ -74,7 +90,6 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         }
         else if (player1Target != null && player2Target != null)
         {
-            // Both targets are still alive, compare damage taken
             float player1DamageTaken = player1Target.maxhealth - player1Target.currentHealth;
             float player2DamageTaken = player2Target.maxhealth - player2Target.currentHealth;
 
@@ -91,16 +106,12 @@ public class GameManager : SingletonMonoBehavior<GameManager>
             else
             {
                 Debug.Log("Draw! Both players took the same amount of damage.");
-                // You might want to handle draws differently, e.g., no score change
             }
         }
         else
         {
             Debug.Log("Draw! Both targets are destroyed or don't exist.");
         }
-
-        // Reset for the next round
-        StartCoroutine(PrepareNextRound());
     }
 
     // Coroutine to prepare for the next round after a short delay
@@ -109,64 +120,80 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         yield return new WaitForSeconds(2f); // Wait for 2 seconds
 
         roundEnded = false;
-        timer = roundTime;
-
-        // Re-initialize targets if they were destroyed
-        if (player1Target == null)
-        {
-            // Instantiate or re-enable player 1 target here if needed
-            Debug.Log("Re-initializing Player 1 target (placeholder)");
-            // Example:(uncomment if this is plan)
-            // player1Target = Instantiate(player1TargetPrefab, player1SpawnPoint.position, Quaternion.identity);
-            // player1Target.OnDamageTaken.AddListener(OnPlayerDamaged);
-            // player1Target.gameObject.GetComponent<TargetController>().OnTargetDestroyed.AddListener(OnTargetDestroyed);
-        }
-        else
-        {
-            player1Target.currentHealth = player1Target.maxhealth;
-            player1Target.gameObject.SetActive(true); // Ensure it's active
-            player1Target.UpdateVisuals();
-        }
-
-        if (player2Target == null)
-        {
-            // Instantiate or re-enable player 2 target here if needed
-            Debug.Log("Re-initializing Player 2 target (placeholder)");
-            // Example:(uncomment if this is plan)
-            // player2Target = Instantiate(player2TargetPrefab, player2SpawnPoint.position, Quaternion.identity);
-            // player2Target.OnDamageTaken.AddListener(OnPlayerDamaged);
-            // player2Target.gameObject.GetComponent<TargetController>().OnTargetDestroyed.AddListener(OnTargetDestroyed);
-        }
-        else
-        {
-            player2Target.currentHealth = player2Target.maxhealth;
-            player2Target.gameObject.SetActive(true); // Ensure it's active
-            player2Target.UpdateVisuals();
-        }
-
-        UpdateUI();
+        
+        // Load the next round scene
+        LoadNextRound();
     }
+
+    void FindTargets()
+    {
+        GameObject player1TargetObject = GameObject.FindWithTag("TARGET");
+        GameObject player2TargetObject = GameObject.FindWithTag("TARGET2");
+
+        if (player1TargetObject != null)
+        {
+            player1Target = player1TargetObject.GetComponent<TargetController>();
+        }
+        else
+        {
+            Debug.LogError("Target1 not found in the scene.");
+        }
+
+        if (player2TargetObject != null)
+        {
+            player2Target = player2TargetObject.GetComponent<TargetController>();
+        }
+        else
+        {
+            Debug.LogError("Target2 not found in the scene.");
+        }
+
+        if (player1Target != null)
+        {
+            player1Target.OnDamageTaken.AddListener(OnPlayerDamaged);
+            player1Target.OnTargetDestroyed.AddListener(OnTargetDestroyed);
+        }
+
+        if (player2Target != null)
+        {
+            player2Target.OnDamageTaken.AddListener(OnPlayerDamaged);
+            player2Target.OnTargetDestroyed.AddListener(OnTargetDestroyed);
+        }
+    }
+
 
     // This method will be called when either player's target takes damage
     public void OnPlayerDamaged(float damageAmount)
     {
         //possibly update for uI or sfx. scoring is in EndRound()
 
-        UpdateUI();
     }
 
-    void UpdateUI()
+    public void LoadNextRound()
     {
-        timerText.text = "Time: " + Mathf.CeilToInt(timer);
-        player1ScoreText.text = "Player 1: " + player1Score;
-        player2ScoreText.text = "Player 2: " + player2Score;
+        currentRoundIndex++;
+        if (currentRoundIndex < roundScenes.Length)
+        {
+            SceneManager.LoadScene(roundScenes[currentRoundIndex]);
+        }
+        else
+        {
+            Debug.Log("Game Over! All rounds completed.");
+            // Optionally, load a game over scene or display a message
+        }
     }
 
-    public void OnTargetDestroyed(TargetController destroyedTarget)
+    public void OnTargetDestroyed()
     {
+        Debug.Log("GameManager: OnTargetDestroyed called. player1Target: " + (player1Target != null) + ", player2Target: " + (player2Target != null));
         if (!roundEnded)
         {
-            EndRound(); // End the round immediately if a target is destroyed
+            Debug.Log("GameManager: Round not ended, calling EndRound.");
+            EndRound();
+        }
+        else
+        {
+            Debug.Log("GameManager: Round already ended.");
         }
     }
 
