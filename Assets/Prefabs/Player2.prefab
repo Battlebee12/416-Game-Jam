@@ -163,7 +163,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 4528382388787556690, guid: 938285d5688ac4841bcf3f8431cf5f1a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -383,6 +383,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6464509452002220458}
     m_Modifications:
+    - target: {fileID: 1096824724731744423, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2957382915358582169, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
       propertyPath: radius
       value: 1
@@ -403,9 +407,17 @@ PrefabInstance:
       propertyPath: rotatingClockwise
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3019387461851203108, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3267067549249120037, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
       propertyPath: m_Name
       value: Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 3468002887093223269, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3647373890537124046, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
       propertyPath: m_LocalScale.x
@@ -427,6 +439,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4051029555172447404, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4434366887690502902, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
       propertyPath: speed
       value: 20
@@ -439,9 +455,17 @@ PrefabInstance:
       propertyPath: inputManager
       value: 
       objectReference: {fileID: 5469696035755267294}
+    - target: {fileID: 5055297739617911787, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6485080718032738965, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6538210750631478134, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6822156295230508920, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
       propertyPath: m_LocalScale.x
