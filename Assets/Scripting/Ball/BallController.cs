@@ -29,11 +29,13 @@ public class BallController : MonoBehaviour
         if(isP1Ball){
             //Debug.Log("detected collision");
             if(collision.gameObject.CompareTag("TARGET")){
+                
                 //collision.gameObject.GetComponent<TargetController>().TakeDamage(damage);
             }
             if(collision.gameObject.CompareTag("TARGET2")){
                 Debug.Log("Target Collision happened");
                 collision.gameObject.GetComponent<TargetController>().TakeDamage(damage);
+                CameraShake.Shake(0.5f,0.2f);
                 Destroy(gameObject);
             }
 
@@ -48,6 +50,7 @@ public class BallController : MonoBehaviour
             if(collision.gameObject.CompareTag("TARGET")){
                 Debug.Log("Target Collision happened");
                 collision.gameObject.GetComponent<TargetController>().TakeDamage(damage);
+                CameraShake.Shake(0.5f,2f);
                 Destroy(gameObject);
             }
             if(collision.gameObject.CompareTag("TARGET2")){
