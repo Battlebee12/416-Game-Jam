@@ -78,6 +78,7 @@ MonoBehaviour:
   lifetime: 5
   damage: 10
   isP1Ball: 1
+  particlesDestroy: {fileID: 1486143357283491004, guid: 3134261deb01f456ba12d91aa8a4b058, type: 3}
   rb: {fileID: 3658811450425714710}
 --- !u!58 &539821118804004893
 CircleCollider2D:
