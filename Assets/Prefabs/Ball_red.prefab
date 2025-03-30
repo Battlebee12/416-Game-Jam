@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3658811450425714710}
   - component: {fileID: 3225417267608200797}
   - component: {fileID: 539821118804004893}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Ball_red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5473652529790916244}
   - component: {fileID: 3040881203417284810}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
