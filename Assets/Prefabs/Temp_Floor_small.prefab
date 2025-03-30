@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4311653435028106357}
   - component: {fileID: 8273301463363618966}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Decorations (32x32)_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,6 +98,10 @@ PrefabInstance:
     - target: {fileID: 8121148263874713442, guid: 0af553f736689c449a8d1ebf8e69c080, type: 3}
       propertyPath: m_Name
       value: Temp_Floor_small
+      objectReference: {fileID: 0}
+    - target: {fileID: 8121148263874713442, guid: 0af553f736689c449a8d1ebf8e69c080, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8167161291850420245, guid: 0af553f736689c449a8d1ebf8e69c080, type: 3}
       propertyPath: m_SortingOrder
