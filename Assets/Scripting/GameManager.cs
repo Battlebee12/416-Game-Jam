@@ -42,7 +42,8 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         Debug.Log("GameManager Start called");
         roundUI.UpdateUIScore(player1Score, player2Score);
         FindTargets();
-        roundTimerUI.OnTimerEnd.AddListener(EndRoundByTimer); // Change EndRound function to EndRoundByTimer
+        roundTimerUI.OnTimerEnd.AddListener(EndRoundByTimer);
+        roundEnded = false;
     }
 
     public bool roundEnded
@@ -118,8 +119,6 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     IEnumerator PrepareNextRound()
     {
         yield return new WaitForSeconds(2f); // Wait for 2 seconds
-
-        roundEnded = false;
         
         // Load the next round scene
         LoadNextRound();
@@ -175,11 +174,12 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         if (currentRoundIndex < roundScenes.Length)
         {
             SceneManager.LoadScene(roundScenes[currentRoundIndex]);
+            roundTimerUI.SetNewRoundTime(60f); //Reset the timer
         }
         else
         {
             Debug.Log("Game Over! All rounds completed.");
-            // Optionally, load a game over scene or display a message
+            //space to make game over screen when all levels complete
         }
     }
 

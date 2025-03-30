@@ -14,20 +14,23 @@ public class GunController : MonoBehaviour
 
     private bool coolDown = false;
     private float coolDownTimer = 0f;
-
+    
     // Update is called once per frame
     void Update()
     {
-        if(coolDown){
+        if(coolDown)
+        {
             coolDownTimer -= Time.deltaTime;
-            if(coolDownTimer < 0){
+            if(coolDownTimer < 0)
+            {
                 coolDown = false;
                 maxAmmo = 3;
             }
         }
         else{
         bool isShooting = inputManager.IsShooting();
-        if (isShooting && maxAmmo > 0){
+        if (isShooting && maxAmmo > 0)
+            {
             StartCoroutine(ResetTrigger());
             //BallController.SpawnProjectile(ballSO,ballSpawnPostion.position,gameObject.transform.right,speed);
             maxAmmo--;
@@ -44,4 +47,5 @@ public class GunController : MonoBehaviour
         BallController.SpawnProjectile(ballSO,ballSpawnPostion.position,gameObject.transform.right,speed);
         
     }
+    
 }

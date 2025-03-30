@@ -252,6 +252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roundTime: 60
+  timerText: {fileID: 7020254930156497448}
   OnTimerEnd:
     m_PersistentCalls:
       m_Calls: []

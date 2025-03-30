@@ -44,13 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d3f5e3799385d4fbf9c5009e76e6ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1Target: {fileID: 0}
-  player2Target: {fileID: 0}
+  player1Target: {fileID: 3174174492121643556, guid: e8fab8ed943258f4e8d5f6175822714d, type: 3}
+  player2Target: {fileID: 3174174492121643556, guid: 0bec8a1603f028546b061f3e1b340d3b, type: 3}
   OnRoundEnded:
     m_PersistentCalls:
       m_Calls: []
-  roundUI: {fileID: 0}
-  roundTimerUI: {fileID: 0}
+  roundUI: {fileID: 8823832273859740911, guid: 6e81a4fc7a7afae4e9b71eb2358524ff, type: 3}
+  roundTimerUI: {fileID: 3667884832928417471, guid: 74677e0de0e8b7547a7d7afc97cc5321, type: 3}
   roundScenes:
   - Level1
   - Level2

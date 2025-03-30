@@ -18,14 +18,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform playerVisual;
     private Vector3 local_scale;
 
-    private void Start(){
+    
+    private void Start()
+    {
         local_scale = new Vector3(playerVisual.localScale.x, playerVisual.localScale.y, playerVisual.localScale.z);
     }
 
-
     private void Update()
     {
-        Debug.Log("roundEnded: " + GameManager.Instance.roundEnded);
+        Debug.Log("PlayerMovement: roundEnded = " + GameManager.Instance.roundEnded);
 
         // Check if the round has ended
         if (GameManager.Instance.roundEnded)
@@ -59,10 +60,9 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("J", true);
 
         }
-        else if(isGrounded){
+        else if(isGrounded)
+        {
             animator.SetBool("J", false); 
-
-
         }
         bool is_attacking = inputManager.IsShooting();
         if (is_attacking){
@@ -70,13 +70,5 @@ public class PlayerMovement : MonoBehaviour
             animator.SetTrigger("ATTACK");
            // StartCoroutine(ResetTrigger());
         }
-
-
     }
-    private IEnumerator ResetTrigger()
-    {
-        yield return new WaitForSeconds(0.3f); // Wait for 0.3 seconds
-        animator.ResetTrigger("ATTACK");
-    }
-
 }

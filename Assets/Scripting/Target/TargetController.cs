@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TargetController : MonoBehaviour
 {
@@ -8,9 +9,12 @@ public class TargetController : MonoBehaviour
     //1 or 2 to identify which player target it is
     public int playerID;
     [SerializeField] SpriteRenderer tempRend;
-    
 
-    
+    public UnityEvent<float> OnDamageTaken;
+    public UnityEvent OnTargetDestroyed;
+
+    private bool targetDestroyedInvoked = false; // Flag to prevent multiple invocations
+
     void Start()
     {
         //set health to max at start of round
@@ -22,11 +26,16 @@ public class TargetController : MonoBehaviour
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0f, maxhealth); //prevent negative health
 
-        //Visual feedback (colour change?)
+        //Visual feedback 
         UpdateVisuals();
-        if(currentHealth <=0)
+
+        OnDamageTaken?.Invoke(damage);
+
+        if (currentHealth <=0 && !targetDestroyedInvoked)
         {
-            //target Destroyed
+            Debug.Log("Target " + gameObject.name + " destroyed. Invoking OnTargetDestroyed.");
+            OnTargetDestroyed?.Invoke();
+            targetDestroyedInvoked = true; // Set the flag
             Destroy(gameObject);
         }
     }
@@ -42,5 +51,20 @@ public class TargetController : MonoBehaviour
     {
         return currentHealth;
     }
-    
+
+    // Unsubscribe from events when the object is destroyed
+    private void OnDestroy()
+    {
+        // Check if OnTargetDestroyed has any listeners before removing them
+        if (OnTargetDestroyed != null)
+        {
+            OnTargetDestroyed.RemoveAllListeners();
+        }
+
+        if (OnDamageTaken != null)
+        {
+            OnDamageTaken.RemoveAllListeners();
+        }
+    }
+
 }

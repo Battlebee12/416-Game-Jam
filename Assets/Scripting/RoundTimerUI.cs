@@ -14,8 +14,10 @@ public class RoundTimerUI : MonoBehaviour
     void Start()
     {
         timer = roundTime;
-        timerText = GetComponent<TextMeshProUGUI>();
+        Debug.Log("RoundTimerUI: timerText assigned in Start(). timerText: " + (timerText != null));
         UpdateTimerDisplay();
+        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(timerText.gameObject);
     }
 
     void Update()
