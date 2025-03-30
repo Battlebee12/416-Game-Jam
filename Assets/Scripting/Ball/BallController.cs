@@ -40,7 +40,7 @@ public class BallController : MonoBehaviour
 
             if(collision.gameObject.CompareTag("Spike")){
                 Debug.Log("Spike destroyed ball!");
-                Destroy(gameObject);
+                ActivateParticles();
             }
             
 
@@ -58,7 +58,7 @@ public class BallController : MonoBehaviour
 
             if(collision.gameObject.CompareTag("Spike")){
                 Debug.Log("Spike destroyed ball!");
-                Destroy(gameObject);
+                ActivateParticles();
             }
 
         }
@@ -82,6 +82,7 @@ public class BallController : MonoBehaviour
             if(particlesDestroy != null){
                 ParticleSystem particles = Instantiate(particlesDestroy,transform.position,Quaternion.identity);
                 particles.Play();
+                Destroy(particles.gameObject,particles.main.duration);
             }
             Destroy(gameObject);
         }
