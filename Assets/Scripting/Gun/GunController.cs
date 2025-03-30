@@ -22,7 +22,7 @@ public class GunController : MonoBehaviour
             coolDownTimer -= Time.deltaTime;
             if(coolDownTimer < 0){
                 coolDown = false;
-                maxAmmo = 3;
+                maxAmmo = 1;
             }
         }
         else{

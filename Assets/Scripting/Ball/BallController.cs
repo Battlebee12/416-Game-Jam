@@ -1,6 +1,7 @@
 using Unity.Mathematics;
 using UnityEditor.Rendering;
 using UnityEngine;
+using System.Collections;
 
 public class BallController : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class BallController : MonoBehaviour
   [SerializeField] private float damage = 10f;
   [SerializeField] private bool isP1Ball = true;
   [SerializeField] private ParticleSystem particlesDestroy;
+  [SerializeField] private ParticleSystem particlesTimer;
 
   [SerializeField] private Rigidbody2D rb;
 
@@ -19,7 +21,8 @@ public class BallController : MonoBehaviour
     }
     private void launch(float speed, Vector2 direction){
         rb.linearVelocity =direction.normalized*speed;
-        Destroy(gameObject,lifetime);
+        StartCoroutine(HandleLifeTime());
+       // Destroy(gameObject,lifetime);
 
     }
 
@@ -86,5 +89,15 @@ public class BallController : MonoBehaviour
             }
             Destroy(gameObject);
         }
+
+    private IEnumerator HandleLifeTime(){
+        yield return new WaitForSeconds(lifetime);
+        if(particlesTimer != null){
+                ParticleSystem timer = Instantiate(particlesTimer,transform.position,Quaternion.identity);
+                timer.Play();
+                Destroy(timer.gameObject,timer.main.duration);
+            }
+            Destroy(gameObject);
+    }
 
 }
