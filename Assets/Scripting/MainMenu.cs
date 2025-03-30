@@ -13,4 +13,12 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            PlayGame();
+        }
+    }
 }
