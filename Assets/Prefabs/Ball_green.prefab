@@ -189,6 +189,7 @@ MonoBehaviour:
   lifetime: 5
   damage: 10
   isP1Ball: 0
+  animator: {fileID: 3447648959552777061}
   rb: {fileID: 3658811450425714710}
 --- !u!58 &539821118804004893
 CircleCollider2D:

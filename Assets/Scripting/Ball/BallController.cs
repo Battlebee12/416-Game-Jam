@@ -9,6 +9,8 @@ public class BallController : MonoBehaviour
   [SerializeField] private float damage = 10f;
   
   [SerializeField] private bool isP1Ball = true;
+
+  [SerializeField] private Animator animator;
   
 
   [SerializeField] private Rigidbody2D rb;
@@ -17,6 +19,15 @@ public class BallController : MonoBehaviour
     {
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
 
+    }
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.B)){
+            animator.SetTrigger("BLAST");
+        }
+        
+        
+        //Debug.Log("Ball position: " + transform.position);
     }
     private void launch(float speed, Vector2 direction){
         rb.linearVelocity =direction.normalized*speed;
@@ -35,12 +46,14 @@ public class BallController : MonoBehaviour
             if(collision.gameObject.CompareTag("TARGET2")){
                 Debug.Log("Target Collision happened");
                 collision.gameObject.GetComponent<TargetController>().TakeDamage(damage);
+                animator.SetTrigger("BLAST");
                 CameraShake.Shake(0.45f,0.75f);
                 Destroy(gameObject);
             }
 
             if(collision.gameObject.CompareTag("Spike")){
                 Debug.Log("Spike destroyed ball!");
+                animator.SetTrigger("BLAST");
                 Destroy(gameObject);
             }
             
