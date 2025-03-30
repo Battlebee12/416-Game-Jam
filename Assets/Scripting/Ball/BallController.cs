@@ -35,7 +35,7 @@ public class BallController : MonoBehaviour
             if(collision.gameObject.CompareTag("TARGET2")){
                 Debug.Log("Target Collision happened");
                 collision.gameObject.GetComponent<TargetController>().TakeDamage(damage);
-                CameraShake.Shake(0.5f,0.2f);
+                CameraShake.Shake(0.45f,0.75f);
                 Destroy(gameObject);
             }
 
@@ -50,7 +50,7 @@ public class BallController : MonoBehaviour
             if(collision.gameObject.CompareTag("TARGET")){
                 Debug.Log("Target Collision happened");
                 collision.gameObject.GetComponent<TargetController>().TakeDamage(damage);
-                CameraShake.Shake(0.5f,2f);
+                CameraShake.Shake(0.45f,0.75f);
                 Destroy(gameObject);
             }
             if(collision.gameObject.CompareTag("TARGET2")){
