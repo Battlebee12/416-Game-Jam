@@ -24,7 +24,6 @@ public class TargetController : MonoBehaviour
 
         //Visual feedback (colour change?)
         UpdateVisuals();
-
         if(currentHealth <=0)
         {
             //target Destroyed
