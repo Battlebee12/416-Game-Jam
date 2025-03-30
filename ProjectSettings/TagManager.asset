@@ -6,6 +6,9 @@ TagManager:
   tags:
   - TARGET
   - TARGET2
+  - Ball
+  - InvisibleWall
+  - Spike
   layers:
   - Default
   - TransparentFX
@@ -15,9 +18,9 @@ TagManager:
   - UI
   - Ground
   - front
-  - 
-  - 
-  - 
+  - Player
+  - Ball
+  - InvisibleWall
   - 
   - 
   - 

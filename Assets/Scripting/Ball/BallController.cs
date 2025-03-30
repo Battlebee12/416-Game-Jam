@@ -29,11 +29,19 @@ public class BallController : MonoBehaviour
         if(isP1Ball){
             //Debug.Log("detected collision");
             if(collision.gameObject.CompareTag("TARGET")){
+                
                 //collision.gameObject.GetComponent<TargetController>().TakeDamage(damage);
             }
             if(collision.gameObject.CompareTag("TARGET2")){
                 Debug.Log("Target Collision happened");
                 collision.gameObject.GetComponent<TargetController>().TakeDamage(damage);
+                CameraShake.Shake(0.45f,0.75f);
+                Destroy(gameObject);
+            }
+
+            if(collision.gameObject.CompareTag("Spike")){
+                Debug.Log("Spike destroyed ball!");
+                Destroy(gameObject);
             }
             
 
@@ -42,9 +50,16 @@ public class BallController : MonoBehaviour
             if(collision.gameObject.CompareTag("TARGET")){
                 Debug.Log("Target Collision happened");
                 collision.gameObject.GetComponent<TargetController>().TakeDamage(damage);
+                CameraShake.Shake(0.45f,0.75f);
+                Destroy(gameObject);
             }
             if(collision.gameObject.CompareTag("TARGET2")){
                 //collision.gameObject.GetComponent<TargetController>().TakeDamage(damage);
+            }
+
+            if(collision.gameObject.CompareTag("Spike")){
+                Debug.Log("Spike destroyed ball!");
+                Destroy(gameObject);
             }
 
         }
@@ -57,11 +72,15 @@ public class BallController : MonoBehaviour
 
     public static void SpawnProjectile(BallSo ballPrefab, Vector2 postion, Vector2 direction, float speed){
         GameObject ball = Instantiate(ballPrefab.Ball,postion,quaternion.identity);
+        ball.tag = "Ball";
+        ball.layer = LayerMask.NameToLayer("Ball");
         ball.GetComponent<BallController>().launch(speed,direction);
+        Debug.Log("Spawned Ball:" + ball.tag);
     }
     public static void SpawnAtOrigin(BallSo ballPrefab, float speed){
         Vector2 dir = UnityEngine.Random.insideUnitCircle.normalized;
         SpawnProjectile(ballPrefab,Vector2.zero,dir,speed);
     }
+    
 
 }

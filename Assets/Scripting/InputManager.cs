@@ -15,7 +15,7 @@ public class InputManager : MonoBehaviour
     {
         if(isplayer2){
             jump = KeyCode.UpArrow;
-            shoot = KeyCode.Slash;
+            shoot = KeyCode.RightShift;
             right = KeyCode.RightArrow;
             left = KeyCode.LeftArrow;
             
@@ -34,7 +34,7 @@ public class InputManager : MonoBehaviour
     }
 
     public bool GetJumping2d(){
-        return Input.GetKey(jump);
+        return Input.GetKeyDown(jump);
     }
 
     public bool IsShooting(){
