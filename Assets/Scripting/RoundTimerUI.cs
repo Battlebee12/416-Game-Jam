@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public class RoundTimerUI : MonoBehaviour
 {
-    public float roundTime = 60f; // Total round time
+    public float roundTime = 5f; // Total round time
     private float timer;
     public TextMeshProUGUI timerText;
     private bool timerEnded = false;
@@ -30,6 +30,10 @@ public class RoundTimerUI : MonoBehaviour
             timer = 0; // Prevent negative time
             timerEnded = true;
             OnTimerEnd?.Invoke();
+            InputManager[] inputManagers = FindObjectsByType<InputManager>(FindObjectsSortMode.None);
+            foreach(InputManager manager in inputManagers){
+                manager.SetTimerEnded(true);
+            }
         }
         UpdateTimerDisplay();
     }

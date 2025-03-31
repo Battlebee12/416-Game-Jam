@@ -1055,6 +1055,14 @@ PrefabInstance:
       propertyPath: timerText
       value: 
       objectReference: {fileID: 1714019635}
+    - target: {fileID: 4706121911696244313, guid: 74677e0de0e8b7547a7d7afc97cc5321, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -311
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706121911696244313, guid: 74677e0de0e8b7547a7d7afc97cc5321, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 164
+      objectReference: {fileID: 0}
     - target: {fileID: 4884435738702962021, guid: 74677e0de0e8b7547a7d7afc97cc5321, type: 3}
       propertyPath: m_Name
       value: TimerDisplayCanvas
@@ -1253,6 +1261,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3755828272975171278, guid: 6e81a4fc7a7afae4e9b71eb2358524ff, type: 3}
+      propertyPath: m_margin.z
+      value: -178.24185
+      objectReference: {fileID: 0}
+    - target: {fileID: 3755828272975171278, guid: 6e81a4fc7a7afae4e9b71eb2358524ff, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 3755828272975171278, guid: 6e81a4fc7a7afae4e9b71eb2358524ff, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6409773094456544560, guid: 6e81a4fc7a7afae4e9b71eb2358524ff, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1332,6 +1352,22 @@ PrefabInstance:
     - target: {fileID: 6409773094456544560, guid: 6e81a4fc7a7afae4e9b71eb2358524ff, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6696411278381744982, guid: 6e81a4fc7a7afae4e9b71eb2358524ff, type: 3}
+      propertyPath: m_margin.x
+      value: -194.83682
+      objectReference: {fileID: 0}
+    - target: {fileID: 6696411278381744982, guid: 6e81a4fc7a7afae4e9b71eb2358524ff, type: 3}
+      propertyPath: m_isRightToLeft
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6696411278381744982, guid: 6e81a4fc7a7afae4e9b71eb2358524ff, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 6696411278381744982, guid: 6e81a4fc7a7afae4e9b71eb2358524ff, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8918712913065123962, guid: 6e81a4fc7a7afae4e9b71eb2358524ff, type: 3}
       propertyPath: m_Name

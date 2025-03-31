@@ -10,6 +10,7 @@ public class InputManager : MonoBehaviour
     private KeyCode right = KeyCode.D;
     private KeyCode left = KeyCode.A;
 
+    private bool timerEnded = false;
 
     private void Start()
     {
@@ -22,6 +23,10 @@ public class InputManager : MonoBehaviour
         }
         
     }
+    public void SetTimerEnded(bool hasEnded){
+        timerEnded = hasEnded;
+    }
+
     public int GetMovement2d(){
         int movement_Int =0;
         if(Input.GetKey(left)){
@@ -34,10 +39,10 @@ public class InputManager : MonoBehaviour
     }
 
     public bool GetJumping2d(){
-        return Input.GetKeyDown(jump);
+        return !timerEnded && Input.GetKeyDown(jump);
     }
 
     public bool IsShooting(){
-        return Input.GetKeyDown(shoot);
+        return !timerEnded && Input.GetKeyDown(shoot);
     }
 }
