@@ -4311,6 +4311,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7244118793039275664, guid: fb89d35d22d934593bc2f70945e2d413, type: 3}
+      propertyPath: m_text
+      value: Return to Menu
+      objectReference: {fileID: 0}
     - target: {fileID: 7933702326542113889, guid: fb89d35d22d934593bc2f70945e2d413, type: 3}
       propertyPath: m_Name
       value: RoundEndUI (1)
