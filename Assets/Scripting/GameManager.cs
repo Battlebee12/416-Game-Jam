@@ -49,6 +49,8 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         roundUI = GameObject.Find("RoundEndUI (1)")?.GetComponent<RoundManagerUI>();
         roundTimerUI = GameObject.Find("TimerDisplayCanvas")?.GetComponent<RoundTimerUI>();
 
+        
+
         nextRoundButton = FindInactiveButtonByName("NextRound");
 
         if (nextRoundButton != null)
@@ -74,6 +76,9 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         Debug.Log($"Scene Loaded: {scene.name}");
         init();  // Reinitialize GameManager references
         FindTargets();
+        roundTimerUI.SetNewRoundTime(60f); // Reset the timer
+        roundTimerUI.OnTimerEnd.RemoveListener(EndRoundByTimer);
+        roundTimerUI.OnTimerEnd.AddListener(EndRoundByTimer);
     }
 
     public bool roundEnded
