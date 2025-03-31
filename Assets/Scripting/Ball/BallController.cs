@@ -5,7 +5,7 @@ using System.Collections;
 
 public class BallController : MonoBehaviour
 {
-  [SerializeField] private float speed = 10f;
+  [SerializeField] private float speed = 5f;
   [SerializeField] private float lifetime = 5f;
   [SerializeField] private float damage = 10f;
   [SerializeField] private bool isP1Ball = true;
