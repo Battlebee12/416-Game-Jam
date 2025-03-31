@@ -7,48 +7,73 @@ using TMPro;
 
 public class GameManager : SingletonMonoBehavior<GameManager>
 {
-    
     public TargetController player1Target;
     public TargetController player2Target;
-    
+
     private int player1Score = 0;
     private int player2Score = 0;
-
     private bool _roundEnded = false;
-    
-    public UnityEvent OnRoundEnded = new UnityEvent();
 
+    public UnityEvent OnRoundEnded = new UnityEvent();
     public RoundManagerUI roundUI;
     public RoundTimerUI roundTimerUI;
+    public Button nextRoundButton;
 
-    public string[] roundScenes = { "Level1", "Level2", "Level3", "Level4" }; // Scene names
+    public string[] roundScenes = { "Level_1_art", "Level_2_art", "Level_3_art", "Level_4_art" };
     private int currentRoundIndex = 0;
-
 
     protected override void Awake()
     {
-        base.Awake(); // Call SingletonMonoBehavior's Awake()
+        base.Awake();
+        if (Instance != this) return;
 
-        if (Instance != this)
-        {
-            return; // Singleton already set up
-        }
-
-        DontDestroyOnLoad(gameObject); // Make GameManager persist
-        Debug.Log("GameManager Awake called");
+        DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded += OnSceneLoaded; // Ensure reinitialization after scene load
     }
 
     void Start()
     {
         Debug.Log("GameManager Start called");
-        InputManager[] inputManagers = FindObjectsByType<InputManager>(FindObjectsSortMode.None);
-        RoundTimerUI[] timerUIArray = FindObjectsByType<RoundTimerUI>(FindObjectsSortMode.None);
-        RoundTimerUI timerUI = timerUIArray.Length > 0 ? timerUIArray[0] : null;
-        CalculateRoundWinner();
-        roundUI.UpdateUIScore(player1Score, player2Score);
+        init();
         FindTargets();
         roundTimerUI.OnTimerEnd.AddListener(EndRoundByTimer);
         roundEnded = false;
+    }
+
+    private void init()
+    {
+        Debug.Log("Initializing GameManager...");
+
+        player1Target = GameObject.Find("Target1")?.GetComponent<TargetController>();
+        player2Target = GameObject.Find("Target2")?.GetComponent<TargetController>();
+        roundUI = GameObject.Find("RoundEndUI (1)")?.GetComponent<RoundManagerUI>();
+        roundTimerUI = GameObject.Find("TimerDisplayCanvas")?.GetComponent<RoundTimerUI>();
+
+        nextRoundButton = FindInactiveButtonByName("NextRound");
+
+        if (nextRoundButton != null)
+            Debug.Log("Next Round Button found successfully!");
+
+        if (roundUI != null) roundUI.UpdateUIScore(player1Score, player2Score);
+    }
+    private Button FindInactiveButtonByName(string buttonName)
+    {
+        Button[] allButtons = Resources.FindObjectsOfTypeAll<Button>();
+        foreach (Button btn in allButtons)
+        {
+            if (btn.gameObject.name == buttonName)
+            {
+                return btn;
+            }
+        }
+        return null;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log($"Scene Loaded: {scene.name}");
+        init();  // Reinitialize GameManager references
+        FindTargets();
     }
 
     public bool roundEnded
@@ -61,24 +86,18 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     {
         roundEnded = true;
         Debug.Log("GameManager: EndRound called. roundEnded: " + roundEnded);
-        
-        CalculateRoundWinner();
 
-        Debug.Log("GameManager: Calling roundUI.EndRound()");
-        roundUI.EndRound("Round Ended!");
-        roundUI.UpdateUIScore(player1Score, player2Score);
+        CalculateRoundWinner();
+        roundUI?.EndRound("Round Ended!");
+        roundUI?.UpdateUIScore(player1Score, player2Score);
 
         OnRoundEnded.Invoke();
-
         StartCoroutine(PrepareNextRound());
     }
 
-    void EndRoundByTimer() 
+    void EndRoundByTimer()
     {
-        if (!roundEnded) //Only call EndRound by the timer, if the game has not already ended.
-        {
-            EndRound();
-        }
+        if (!roundEnded) EndRound();
     }
 
     void CalculateRoundWinner()
@@ -86,12 +105,12 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         Debug.Log("GameManager CalculateRoundWinner called");
         if (player1Target == null && player2Target != null)
         {
-            Debug.Log("Player 2 wins by destroying Player 1's target!");
+            Debug.Log("Player 2 wins!");
             player2Score++;
         }
         else if (player2Target == null && player1Target != null)
         {
-            Debug.Log("Player 1 wins by destroying Player 2's target!");
+            Debug.Log("Player 1 wins!");
             player1Score++;
         }
         else if (player1Target != null && player2Target != null)
@@ -116,127 +135,80 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         }
         else
         {
-            Debug.Log("Draw! Both targets are destroyed or don't exist.");
+            Debug.Log("Draw! Both targets are destroyed.");
         }
     }
 
-    // Coroutine to prepare for the next round after a short delay
     IEnumerator PrepareNextRound()
     {
-        yield return new WaitForSeconds(2f); // Wait for 2 seconds
-        
-        // Load the next round scene
+        yield return new WaitForSeconds(2f);
         LoadNextRound();
     }
 
     void FindTargets()
     {
-
+        Debug.Log("Finding targets...");
         GameObject player1TargetObject = GameObject.FindWithTag("TARGET");
         GameObject player2TargetObject = GameObject.FindWithTag("TARGET2");
 
-        if (player1TargetObject != null)
-        {
-            player1Target = player1TargetObject.GetComponent<TargetController>();
-            if(player1Target != null){
-                player1Target.OnTargetDestroyed.AddListener(() =>{
-                player1Target = null;
-            });
-
-            }
-        }
-        else
-        {
-            Debug.LogError("Target1 not found in the scene.");
-        }
-
-        if (player2TargetObject != null)
-        {
-            player2Target = player2TargetObject.GetComponent<TargetController>();
-            if(player2Target != null){
-                player2Target.OnTargetDestroyed.AddListener(() =>{
-                player2Target = null;
-            });
-        }
-        }
-        else
-        {
-            Debug.LogError("Target2 not found in the scene.");
-        }
+        player1Target = player1TargetObject?.GetComponent<TargetController>();
+        player2Target = player2TargetObject?.GetComponent<TargetController>();
 
         if (player1Target != null)
         {
+            player1Target.OnTargetDestroyed.AddListener(() => player1Target = null);
             player1Target.OnDamageTaken.AddListener(OnPlayerDamaged);
             player1Target.OnTargetDestroyed.AddListener(OnTargetDestroyed);
         }
 
         if (player2Target != null)
         {
+            player2Target.OnTargetDestroyed.AddListener(() => player2Target = null);
             player2Target.OnDamageTaken.AddListener(OnPlayerDamaged);
             player2Target.OnTargetDestroyed.AddListener(OnTargetDestroyed);
         }
     }
 
-
-    // This method will be called when either player's target takes damage
     public void OnPlayerDamaged(float damageAmount)
     {
-        //possibly update for uI or sfx. scoring is in EndRound()
-
+        // Possibly update UI or play sound effects
     }
 
     public void LoadNextRound()
     {
+        roundEnded = false;
         currentRoundIndex++;
         if (currentRoundIndex < roundScenes.Length)
         {
-            SceneManager.LoadScene(roundScenes[currentRoundIndex]);
-            //roundTimerUI.SetNewRoundTime(60f); //Reset the timer
-            InputManager[] inputManagers = FindObjectsByType<InputManager>(FindObjectsSortMode.None);
-            foreach(InputManager manager in inputManagers){
-                manager.SetCanShoot(true);
-            }
-            RoundTimerUI[] timerUIArray = FindObjectsByType<RoundTimerUI>(FindObjectsSortMode.None);
-            if(timerUIArray.Length > 0){
-                RoundTimerUI timerUI = timerUIArray[0];
-                timerUI.SetNewRoundTime(60f);
-            }
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         else
         {
             Debug.Log("Game Over! All rounds completed.");
-            //space to make game over screen when all levels complete
         }
     }
 
     public void OnTargetDestroyed()
     {
-        Debug.Log("GameManager: OnTargetDestroyed called. player1Target: " + (player1Target != null) + ", player2Target: " + (player2Target != null));
         if (!roundEnded)
         {
             roundEnded = true;
             CalculateRoundWinner();
-            
 
-            if(roundUI != null){
-                roundUI.UpdateUIScore(player1Score,player2Score);
-                string message = "Round Ended!";
-                if(player1Target == null && player2Target != null){
-                    message = "Player 2 wins!";
-                }
-                else if(player1Target != null && player2Target == null){
-                    message = "Player 1 wins!";
-                }else{
-                    message = "It's a draw!";
-                }
-            roundUI.EndRound(message);
+            if (roundUI != null)
+            {
+                roundUI.UpdateUIScore(player1Score, player2Score);
+                string message = player1Target == null && player2Target != null ? "Player 2 wins!" :
+                                 player2Target == null && player1Target != null ? "Player 1 wins!" :
+                                 "It's a draw!";
+                roundUI.EndRound(message);
+            }
 
-            InputManager[] inputManagers = FindObjectsByType<InputManager>(FindObjectsSortMode.None);
-            foreach(InputManager manager in inputManagers){
+            foreach (InputManager manager in FindObjectsByType<InputManager>(FindObjectsSortMode.None))
+            {
                 manager.SetCanShoot(false);
             }
             OnRoundEnded.Invoke();
-            }
         }
         else
         {
@@ -244,24 +216,19 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         }
     }
 
-    // Unsubscribe from events when the object is destroyed
     private void OnDestroy()
     {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+
         if (player1Target != null)
         {
             player1Target.OnDamageTaken.RemoveListener(OnPlayerDamaged);
-            if (player1Target.gameObject.GetComponent<TargetController>())
-            {
-                player1Target.gameObject.GetComponent<TargetController>().OnTargetDestroyed.RemoveListener(OnTargetDestroyed);
-            }
+            player1Target.OnTargetDestroyed.RemoveListener(OnTargetDestroyed);
         }
         if (player2Target != null)
         {
             player2Target.OnDamageTaken.RemoveListener(OnPlayerDamaged);
-            if (player2Target.gameObject.GetComponent<TargetController>())
-            {
-                player2Target.gameObject.GetComponent<TargetController>().OnTargetDestroyed.RemoveListener(OnTargetDestroyed);
-            }
+            player2Target.OnTargetDestroyed.RemoveListener(OnTargetDestroyed);
         }
     }
 }

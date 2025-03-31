@@ -665,6 +665,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7889845505993544248, guid: fb89d35d22d934593bc2f70945e2d413, type: 3}
+      propertyPath: m_TagString
+      value: N
+      objectReference: {fileID: 0}
     - target: {fileID: 7933702326542113889, guid: fb89d35d22d934593bc2f70945e2d413, type: 3}
       propertyPath: m_Name
       value: RoundEndUI (1)
