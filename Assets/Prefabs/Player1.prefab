@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
-  jumpforce: 16
+  jumpforce: 10
   inputManager: {fileID: 5469696035755267294}
   rb: {fileID: 1969714096711736280}
   groundCheck: {fileID: 1952783780835163217}
@@ -446,7 +446,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3647373890537124046, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.4
+      value: 0.48
       objectReference: {fileID: 0}
     - target: {fileID: 3647373890537124046, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -471,7 +471,7 @@ PrefabInstance:
     - target: {fileID: 4434366887690502902, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
       propertyPath: cooldownUI
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 787517735956695092, guid: 2b5655a649d1f344083e43e82c8459f0, type: 3}
     - target: {fileID: 4434366887690502902, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
       propertyPath: shootSound
       value: 
@@ -522,11 +522,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6822156295230508920, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.64
+      value: -0.016
       objectReference: {fileID: 0}
     - target: {fileID: 6822156295230508920, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.02
+      value: -3.28
       objectReference: {fileID: 0}
     - target: {fileID: 6822156295230508920, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
       propertyPath: m_LocalPosition.z
