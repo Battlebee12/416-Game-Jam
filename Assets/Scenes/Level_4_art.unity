@@ -649,11 +649,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4972236628128136061, guid: 571ff457b7bfd4417b9d1af8085485b0, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -229
+      value: 29.5
       objectReference: {fileID: 0}
     - target: {fileID: 4972236628128136061, guid: 571ff457b7bfd4417b9d1af8085485b0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 176
+      value: -7.899994
       objectReference: {fileID: 0}
     - target: {fileID: 6212307781470034302, guid: 571ff457b7bfd4417b9d1af8085485b0, type: 3}
       propertyPath: m_Name
@@ -4619,8 +4619,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1046712285}
   - {fileID: 50198803}
+  - {fileID: 1046712285}
   - {fileID: 1486331947}
   - {fileID: 1599994902}
   m_Father: {fileID: 0}
