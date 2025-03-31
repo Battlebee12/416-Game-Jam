@@ -468,6 +468,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 1e5de1416897b17499aea9bc775dae2b, type: 2}
     - target: {fileID: 4434366887690502902, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
+      propertyPath: cooldownUI
+      value: 
+      objectReference: {fileID: 787517735956695092, guid: 2b5655a649d1f344083e43e82c8459f0, type: 3}
+    - target: {fileID: 4434366887690502902, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
       propertyPath: inputManager
       value: 
       objectReference: {fileID: 5469696035755267294}
