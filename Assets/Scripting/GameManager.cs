@@ -131,13 +131,19 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     void FindTargets()
     {
-        
+
         GameObject player1TargetObject = GameObject.FindWithTag("TARGET");
         GameObject player2TargetObject = GameObject.FindWithTag("TARGET2");
 
         if (player1TargetObject != null)
         {
             player1Target = player1TargetObject.GetComponent<TargetController>();
+            if(player1Target != null){
+                player1Target.OnTargetDestroyed.AddListener(() => {
+                player1Target = null;
+            });
+
+            }
         }
         else
         {
@@ -147,6 +153,11 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         if (player2TargetObject != null)
         {
             player2Target = player2TargetObject.GetComponent<TargetController>();
+            if(player2Target != null){
+                player2Target.OnTargetDestroyed.AddListener(() => {
+                player2Target = null;
+            });
+        }
         }
         else
         {
