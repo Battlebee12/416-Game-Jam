@@ -495,11 +495,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1335116678}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 917, y: -503.1}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 5, y: -4}
+  m_SizeDelta: {x: 1920, y: 1080}
+  m_Pivot: {x: 1, y: 0}
 --- !u!114 &315595793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -935,6 +935,38 @@ PrefabInstance:
     - target: {fileID: 6212307781470034302, guid: 571ff457b7bfd4417b9d1af8085485b0, type: 3}
       propertyPath: m_Name
       value: TimerDisplayCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125309648198431268, guid: 571ff457b7bfd4417b9d1af8085485b0, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125309648198431268, guid: 571ff457b7bfd4417b9d1af8085485b0, type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125309648198431268, guid: 571ff457b7bfd4417b9d1af8085485b0, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125309648198431268, guid: 571ff457b7bfd4417b9d1af8085485b0, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125309648198431268, guid: 571ff457b7bfd4417b9d1af8085485b0, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 2068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125309648198431268, guid: 571ff457b7bfd4417b9d1af8085485b0, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125309648198431268, guid: 571ff457b7bfd4417b9d1af8085485b0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125309648198431268, guid: 571ff457b7bfd4417b9d1af8085485b0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3480,10 +3512,10 @@ RectTransform:
   m_Father: {fileID: 1335116678}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -919, y: -503.1}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -1, y: -3}
+  m_SizeDelta: {x: 1920, y: 1080}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &1476917866
 MonoBehaviour:
   m_ObjectHideFlags: 0
