@@ -11,6 +11,7 @@ public class BallController : MonoBehaviour
   [SerializeField] private bool isP1Ball = true;
   [SerializeField] private ParticleSystem particlesDestroy;
   [SerializeField] private ParticleSystem particlesTimer;
+  public AudioClip exploSound;
 
   [SerializeField] private Rigidbody2D rb;
 
@@ -37,12 +38,14 @@ public class BallController : MonoBehaviour
             if(collision.gameObject.CompareTag("TARGET2")){
                 Debug.Log("Target Collision happened");
                 collision.gameObject.GetComponent<TargetController>().TakeDamage(damage);
+                AudioManager.Instance.PlaySFX(exploSound);
                 CameraShake.Shake(0.45f,0.75f);
                 ActivateParticles();
             }
 
             if(collision.gameObject.CompareTag("Spike")){
                 Debug.Log("Spike destroyed ball!");
+                AudioManager.Instance.PlaySFX(exploSound);
                 ActivateParticles();
             }
             
@@ -52,6 +55,7 @@ public class BallController : MonoBehaviour
             if(collision.gameObject.CompareTag("TARGET")){
                 Debug.Log("Target Collision happened");
                 collision.gameObject.GetComponent<TargetController>().TakeDamage(damage);
+                AudioManager.Instance.PlaySFX(exploSound);
                 CameraShake.Shake(0.45f,0.75f);
                 ActivateParticles();
             }
@@ -61,6 +65,7 @@ public class BallController : MonoBehaviour
 
             if(collision.gameObject.CompareTag("Spike")){
                 Debug.Log("Spike destroyed ball!");
+                AudioManager.Instance.PlaySFX(exploSound);
                 ActivateParticles();
             }
 
@@ -94,6 +99,7 @@ public class BallController : MonoBehaviour
         yield return new WaitForSeconds(lifetime);
         if(particlesTimer != null){
                 ParticleSystem timer = Instantiate(particlesTimer,transform.position,Quaternion.identity);
+                AudioManager.Instance.PlaySFX(exploSound);
                 timer.Play();
                 Destroy(timer.gameObject,timer.main.duration);
             }
