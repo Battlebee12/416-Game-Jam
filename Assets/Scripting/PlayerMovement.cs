@@ -18,13 +18,24 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform playerVisual;
     private Vector3 local_scale;
 
-    private void Start(){
+    
+    private void Start()
+    {
         local_scale = new Vector3(playerVisual.localScale.x, playerVisual.localScale.y, playerVisual.localScale.z);
     }
 
-
     private void Update()
     {
+        Debug.Log("PlayerMovement: roundEnded = " + GameManager.Instance.roundEnded);
+
+        // Check if the round has ended
+        if (GameManager.Instance.roundEnded)
+        {
+            rb.linearVelocity = Vector2.zero; // Stop any existing movement
+            animator.SetFloat("SPEED", 0f); // Stop movement animation
+            return; // Exit the Update method, preventing further input processing
+        }
+
         int movement_Int = inputManager.GetMovement2d();
         bool isJumping = inputManager.GetJumping2d();
 
@@ -49,10 +60,9 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("J", true);
 
         }
-        else if(isGrounded){
+        else if(isGrounded)
+        {
             animator.SetBool("J", false); 
-
-
         }
         bool is_attacking = inputManager.IsShooting();
         if (is_attacking){
@@ -60,13 +70,5 @@ public class PlayerMovement : MonoBehaviour
             animator.SetTrigger("ATTACK");
            // StartCoroutine(ResetTrigger());
         }
-
-
     }
-    private IEnumerator ResetTrigger()
-    {
-        yield return new WaitForSeconds(0.3f); // Wait for 0.3 seconds
-        animator.ResetTrigger("ATTACK");
-    }
-
 }
