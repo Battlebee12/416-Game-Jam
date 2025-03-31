@@ -139,7 +139,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         {
             player1Target = player1TargetObject.GetComponent<TargetController>();
             if(player1Target != null){
-                player1Target.OnTargetDestroyed.AddListener(() => {
+                player1Target.OnTargetDestroyed.AddListener(() =>{
                 player1Target = null;
             });
 
@@ -154,7 +154,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         {
             player2Target = player2TargetObject.GetComponent<TargetController>();
             if(player2Target != null){
-                player2Target.OnTargetDestroyed.AddListener(() => {
+                player2Target.OnTargetDestroyed.AddListener(() =>{
                 player2Target = null;
             });
         }
