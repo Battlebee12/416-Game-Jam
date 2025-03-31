@@ -9,6 +9,8 @@ TagManager:
   - Ball
   - InvisibleWall
   - Spike
+  - NEXTROUNDBUTTON
+  - N
   layers:
   - Default
   - TransparentFX
