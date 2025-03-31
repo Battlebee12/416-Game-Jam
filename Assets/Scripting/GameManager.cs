@@ -178,13 +178,16 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     {
         roundEnded = false;
         currentRoundIndex++;
-        if (currentRoundIndex < roundScenes.Length)
+        if (SceneManager.GetActiveScene().buildIndex <5)
         {
+             Destroy(roundTimerUI.gameObject);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         else
         {
+            Destroy(roundTimerUI.gameObject);
             Debug.Log("Game Over! All rounds completed.");
+            SceneManager.LoadScene(0);
         }
     }
 
