@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Transform playerVisual;
     private Vector3 local_scale;
+    public AudioClip jumpSound;
 
     private void Start(){
         local_scale = new Vector3(playerVisual.localScale.x, playerVisual.localScale.y, playerVisual.localScale.z);
@@ -46,6 +47,8 @@ public class PlayerMovement : MonoBehaviour
         bool isGrounded = Physics2D.OverlapCircle(groundCheck.position,0.35f,groundLayer);
         if (isGrounded && isJumping){
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpforce);
+            AudioManager.Instance.PlaySFX(jumpSound);
+
             animator.SetBool("J", true);
 
         }

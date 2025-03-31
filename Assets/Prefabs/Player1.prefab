@@ -271,6 +271,7 @@ MonoBehaviour:
     m_Bits: 64
   animator: {fileID: 308242687256466384}
   playerVisual: {fileID: 2492431901824414398}
+  jumpSound: {fileID: 8300000, guid: 3793c963bfadce341a51c1ac8113244c, type: 3}
 --- !u!50 &1969714096711736280
 Rigidbody2D:
   serializedVersion: 5
@@ -471,6 +472,10 @@ PrefabInstance:
       propertyPath: cooldownUI
       value: 
       objectReference: {fileID: 787517735956695092, guid: 2b5655a649d1f344083e43e82c8459f0, type: 3}
+    - target: {fileID: 4434366887690502902, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 591367188773a894cbd6c1f258c6e2ef, type: 3}
     - target: {fileID: 4434366887690502902, guid: 688daaa258f1dc141b675e1e5aac4b9e, type: 3}
       propertyPath: inputManager
       value: 

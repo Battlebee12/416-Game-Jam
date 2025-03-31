@@ -13,12 +13,14 @@ public class GunController : MonoBehaviour
     
     private bool canShoot = true;
     private float lastShotTime = 0f;
+    public AudioClip shootSound;
 
     void Update()
     {
         if (canShoot && inputManager.IsShooting() && Time.time - lastShotTime >= minTimeBtwShots)
         {
             lastShotTime = Time.time;
+            AudioManager.Instance.PlaySFX(shootSound);
             StartCoroutine(Fire());
             cooldownUI.StartCooldown(); 
         }
