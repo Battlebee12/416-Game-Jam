@@ -541,6 +541,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4972236628128136061, guid: 571ff457b7bfd4417b9d1af8085485b0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -229
+      objectReference: {fileID: 0}
+    - target: {fileID: 4972236628128136061, guid: 571ff457b7bfd4417b9d1af8085485b0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 176
+      objectReference: {fileID: 0}
     - target: {fileID: 6212307781470034302, guid: 571ff457b7bfd4417b9d1af8085485b0, type: 3}
       propertyPath: m_Name
       value: TimerDisplayCanvas
