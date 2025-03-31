@@ -325,8 +325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputManager: {fileID: -3636848665765598208}
-  maxAmmo: 0
-  minTimeBtwShots: 0
+  minTimeBtwShots: 3
   ballSO: {fileID: 0}
   ballSpawnPostion: {fileID: 6485080718032738965}
   speed: 5
@@ -657,6 +656,7 @@ MonoBehaviour:
   targetObject: {fileID: 6822156295230508920}
   rotationSpeed: 30
   radius: 1
+  isplayer2: 0
 --- !u!1 &6485782561577837349
 GameObject:
   m_ObjectHideFlags: 0
