@@ -4,48 +4,32 @@ using UnityEngine;
 public class GunController : MonoBehaviour
 {
     [SerializeField] private InputManager inputManager;
-    [SerializeField] private int maxAmmo = 1;
-    [SerializeField] private float duration = 5f;
-    [SerializeField] private float minTimeBtwShots;
-
+    [SerializeField] private float minTimeBtwShots = 3f; // Time delay between shots
+    
     [SerializeField] private BallSo ballSO;
     [SerializeField] private Transform ballSpawnPostion;
     [SerializeField] private float speed;
-
-    private bool coolDown = false;
-    private float coolDownTimer = 0f;
+    [SerializeField] private GunCooldownUI cooldownUI;
     
-    // Update is called once per frame
+    private bool canShoot = true;
+    private float lastShotTime = 0f;
+
     void Update()
     {
-        if(coolDown)
+        if (canShoot && inputManager.IsShooting() && Time.time - lastShotTime >= minTimeBtwShots)
         {
-            coolDownTimer -= Time.deltaTime;
-            if(coolDownTimer < 0)
-            {
-                coolDown = false;
-                maxAmmo = 3;
-            }
-        }
-        else{
-        bool isShooting = inputManager.IsShooting();
-        if (isShooting && maxAmmo > 0)
-            {
-            StartCoroutine(ResetTrigger());
-            //BallController.SpawnProjectile(ballSO,ballSpawnPostion.position,gameObject.transform.right,speed);
-            maxAmmo--;
-        }
-            if(maxAmmo <= 0){
-                coolDown = true;
-                coolDownTimer = duration;
-            }
+            lastShotTime = Time.time;
+            StartCoroutine(Fire());
+            cooldownUI.StartCooldown(); 
         }
     }
-     private IEnumerator ResetTrigger()
+
+    private IEnumerator Fire()
     {
-        yield return new WaitForSeconds(0.15f); // Wait for 0.3 seconds
-        BallController.SpawnProjectile(ballSO,ballSpawnPostion.position,gameObject.transform.right,speed);
-        
+        canShoot = false;
+        yield return new WaitForSeconds(0.15f); // Delay before firing
+        BallController.SpawnProjectile(ballSO, ballSpawnPostion.position, transform.right, speed);
+        canShoot = true;
     }
     
 }
