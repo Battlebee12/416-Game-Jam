@@ -7,5 +7,10 @@ public enum playerNo{
 public class BallSo : ScriptableObject{
     public GameObject Ball;
     public playerNo playerNo;
-    public ParticleSystem destroyEffect;
+   
+    
+
+    
+
+
 }

@@ -1,16 +1,15 @@
 using Unity.Mathematics;
 using UnityEditor.Rendering;
 using UnityEngine;
-using System.Collections;
 
 public class BallController : MonoBehaviour
 {
   [SerializeField] private float speed = 10f;
   [SerializeField] private float lifetime = 5f;
   [SerializeField] private float damage = 10f;
+  
   [SerializeField] private bool isP1Ball = true;
-  [SerializeField] private ParticleSystem particlesDestroy;
-  [SerializeField] private ParticleSystem particlesTimer;
+  
 
   [SerializeField] private Rigidbody2D rb;
 
@@ -21,8 +20,7 @@ public class BallController : MonoBehaviour
     }
     private void launch(float speed, Vector2 direction){
         rb.linearVelocity =direction.normalized*speed;
-        StartCoroutine(HandleLifeTime());
-       // Destroy(gameObject,lifetime);
+        Destroy(gameObject,lifetime);
 
     }
 
@@ -38,12 +36,12 @@ public class BallController : MonoBehaviour
                 Debug.Log("Target Collision happened");
                 collision.gameObject.GetComponent<TargetController>().TakeDamage(damage);
                 CameraShake.Shake(0.45f,0.75f);
-                ActivateParticles();
+                Destroy(gameObject);
             }
 
             if(collision.gameObject.CompareTag("Spike")){
                 Debug.Log("Spike destroyed ball!");
-                ActivateParticles();
+                Destroy(gameObject);
             }
             
 
@@ -53,7 +51,7 @@ public class BallController : MonoBehaviour
                 Debug.Log("Target Collision happened");
                 collision.gameObject.GetComponent<TargetController>().TakeDamage(damage);
                 CameraShake.Shake(0.45f,0.75f);
-                ActivateParticles();
+                Destroy(gameObject);
             }
             if(collision.gameObject.CompareTag("TARGET2")){
                 //collision.gameObject.GetComponent<TargetController>().TakeDamage(damage);
@@ -61,12 +59,15 @@ public class BallController : MonoBehaviour
 
             if(collision.gameObject.CompareTag("Spike")){
                 Debug.Log("Spike destroyed ball!");
-                ActivateParticles();
+                Destroy(gameObject);
             }
 
         }
+        
+        
         // Vector2 reflectDir = Vector2.Reflect(rb.linearVelocity, collision.contacts[0].normal);
         // rb.linearVelocity = reflectDir.normalized * rb.linearVelocity.magnitude; // Maintain current speed
+       
     }
 
     public static void SpawnProjectile(BallSo ballPrefab, Vector2 postion, Vector2 direction, float speed){
@@ -81,23 +82,5 @@ public class BallController : MonoBehaviour
         SpawnProjectile(ballPrefab,Vector2.zero,dir,speed);
     }
     
-    private void ActivateParticles(){
-            if(particlesDestroy != null){
-                ParticleSystem particles = Instantiate(particlesDestroy,transform.position,Quaternion.identity);
-                particles.Play();
-                Destroy(particles.gameObject,particles.main.duration);
-            }
-            Destroy(gameObject);
-        }
-
-    private IEnumerator HandleLifeTime(){
-        yield return new WaitForSeconds(lifetime);
-        if(particlesTimer != null){
-                ParticleSystem timer = Instantiate(particlesTimer,transform.position,Quaternion.identity);
-                timer.Play();
-                Destroy(timer.gameObject,timer.main.duration);
-            }
-            Destroy(gameObject);
-    }
 
 }
