@@ -49,8 +49,6 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         roundUI = GameObject.Find("RoundEndUI (1)")?.GetComponent<RoundManagerUI>();
         roundTimerUI = GameObject.Find("TimerDisplayCanvas")?.GetComponent<RoundTimerUI>();
 
-        
-
         nextRoundButton = FindInactiveButtonByName("NextRound");
 
         if (nextRoundButton != null)
@@ -76,9 +74,6 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         Debug.Log($"Scene Loaded: {scene.name}");
         init();  // Reinitialize GameManager references
         FindTargets();
-        roundTimerUI.SetNewRoundTime(60f); // Reset the timer
-        roundTimerUI.OnTimerEnd.RemoveListener(EndRoundByTimer);
-        roundTimerUI.OnTimerEnd.AddListener(EndRoundByTimer);
     }
 
     public bool roundEnded
@@ -97,7 +92,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         roundUI?.UpdateUIScore(player1Score, player2Score);
 
         OnRoundEnded.Invoke();
-        //StartCoroutine(PrepareNextRound());
+        StartCoroutine(PrepareNextRound());
     }
 
     void EndRoundByTimer()
@@ -183,16 +178,13 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     {
         roundEnded = false;
         currentRoundIndex++;
-        if (SceneManager.GetActiveScene().buildIndex <5)
+        if (currentRoundIndex < roundScenes.Length)
         {
-             Destroy(roundTimerUI.gameObject);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         else
         {
-            Destroy(roundTimerUI.gameObject);
             Debug.Log("Game Over! All rounds completed.");
-            SceneManager.LoadScene(0);
         }
     }
 
