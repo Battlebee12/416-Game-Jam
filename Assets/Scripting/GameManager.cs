@@ -92,7 +92,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         roundUI?.UpdateUIScore(player1Score, player2Score);
 
         OnRoundEnded.Invoke();
-        StartCoroutine(PrepareNextRound());
+        //StartCoroutine(PrepareNextRound());
     }
 
     void EndRoundByTimer()
