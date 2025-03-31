@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      made-a-main-menu-background-v0-tocu0xmhmeca1_0: -1337031811398610309
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
