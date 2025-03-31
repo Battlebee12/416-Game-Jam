@@ -394,6 +394,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1507805526}
     - target: {fileID: 8484100662494814606, guid: 966059b2ee156c14d927e557b4edce89, type: 3}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: a06d07d4009602c4c9111bea7d4eb2ae, type: 3}
+    - target: {fileID: 8484100662494814606, guid: 966059b2ee156c14d927e557b4edce89, type: 3}
       propertyPath: jumpforce
       value: 16
       objectReference: {fileID: 0}
@@ -1431,6 +1435,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -3.74
       objectReference: {fileID: 0}
+    - target: {fileID: 8484100662494814606, guid: 65794df821def6b47a2437f4770797ed, type: 3}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 07e496256d507c345b2f8b4ace9d76c9, type: 3}
     - target: {fileID: 8484100662494814606, guid: 65794df821def6b47a2437f4770797ed, type: 3}
       propertyPath: jumpforce
       value: 16.5
@@ -4517,9 +4525,7 @@ SceneRoots:
   - {fileID: 1127858391}
   - {fileID: 1335116678}
   - {fileID: 2401103771295569165}
-
   - {fileID: 487217605}
   - {fileID: 299680493}
   - {fileID: 600182430}
   - {fileID: 1599851038}
-
