@@ -75,8 +75,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5016ad26cb0e2a541905b3ed8e25d5b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  lifetime: 5
+  speed: 5
+  lifetime: 3
   damage: 10
   isP1Ball: 1
   particlesDestroy: {fileID: 1486143357283491004, guid: 3134261deb01f456ba12d91aa8a4b058, type: 3}
