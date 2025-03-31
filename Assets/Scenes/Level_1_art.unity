@@ -381,6 +381,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player1
       objectReference: {fileID: 0}
+    - target: {fileID: 7266159073200657173, guid: 966059b2ee156c14d927e557b4edce89, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266159073200657173, guid: 966059b2ee156c14d927e557b4edce89, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.02
+      objectReference: {fileID: 0}
     - target: {fileID: 8484100662494814606, guid: 966059b2ee156c14d927e557b4edce89, type: 3}
       propertyPath: animator
       value: 
@@ -1414,6 +1422,14 @@ PrefabInstance:
     - target: {fileID: 6593727275113065432, guid: 65794df821def6b47a2437f4770797ed, type: 3}
       propertyPath: m_Name
       value: Player2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266159073200657173, guid: 65794df821def6b47a2437f4770797ed, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266159073200657173, guid: 65794df821def6b47a2437f4770797ed, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.74
       objectReference: {fileID: 0}
     - target: {fileID: 8484100662494814606, guid: 65794df821def6b47a2437f4770797ed, type: 3}
       propertyPath: jumpforce
@@ -4501,7 +4517,9 @@ SceneRoots:
   - {fileID: 1127858391}
   - {fileID: 1335116678}
   - {fileID: 2401103771295569165}
+
   - {fileID: 487217605}
   - {fileID: 299680493}
   - {fileID: 600182430}
   - {fileID: 1599851038}
+
