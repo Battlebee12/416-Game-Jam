@@ -192,7 +192,10 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         {
             Destroy(roundTimerUI.gameObject);
             Debug.Log("Game Over! All rounds completed.");
+            player1Score = 0;
+            player2Score = 0;
             SceneManager.LoadScene(0);
+            
         }
     }
 
