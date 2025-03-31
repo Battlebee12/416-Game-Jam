@@ -24,6 +24,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     public string[] roundScenes = { "Level1", "Level2", "Level3", "Level4" }; // Scene names
     private int currentRoundIndex = 0;
 
+
     protected override void Awake()
     {
         base.Awake(); // Call SingletonMonoBehavior's Awake()
@@ -40,6 +41,10 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     void Start()
     {
         Debug.Log("GameManager Start called");
+        InputManager[] inputManagers = FindObjectsByType<InputManager>(FindObjectsSortMode.None);
+        RoundTimerUI[] timerUIArray = FindObjectsByType<RoundTimerUI>(FindObjectsSortMode.None);
+        RoundTimerUI timerUI = timerUIArray.Length > 0 ? timerUIArray[0] : null;
+        CalculateRoundWinner();
         roundUI.UpdateUIScore(player1Score, player2Score);
         FindTargets();
         roundTimerUI.OnTimerEnd.AddListener(EndRoundByTimer);
@@ -126,6 +131,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     void FindTargets()
     {
+        
         GameObject player1TargetObject = GameObject.FindWithTag("TARGET");
         GameObject player2TargetObject = GameObject.FindWithTag("TARGET2");
 
@@ -174,7 +180,16 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         if (currentRoundIndex < roundScenes.Length)
         {
             SceneManager.LoadScene(roundScenes[currentRoundIndex]);
-            roundTimerUI.SetNewRoundTime(60f); //Reset the timer
+            //roundTimerUI.SetNewRoundTime(60f); //Reset the timer
+            InputManager[] inputManagers = FindObjectsByType<InputManager>(FindObjectsSortMode.None);
+            foreach(InputManager manager in inputManagers){
+                manager.SetCanShoot(true);
+            }
+            RoundTimerUI[] timerUIArray = FindObjectsByType<RoundTimerUI>(FindObjectsSortMode.None);
+            if(timerUIArray.Length > 0){
+                RoundTimerUI timerUI = timerUIArray[0];
+                timerUI.SetNewRoundTime(60f);
+            }
         }
         else
         {
@@ -188,8 +203,29 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         Debug.Log("GameManager: OnTargetDestroyed called. player1Target: " + (player1Target != null) + ", player2Target: " + (player2Target != null));
         if (!roundEnded)
         {
-            Debug.Log("GameManager: Round not ended, calling EndRound.");
-            EndRound();
+            roundEnded = true;
+            CalculateRoundWinner();
+            
+
+            if(roundUI != null){
+                roundUI.UpdateUIScore(player1Score,player2Score);
+                string message = "Round Ended!";
+                if(player1Target == null && player2Target != null){
+                    message = "Player 2 wins!";
+                }
+                else if(player1Target != null && player2Target == null){
+                    message = "Player 1 wins!";
+                }else{
+                    message = "It's a draw!";
+                }
+            roundUI.EndRound(message);
+
+            InputManager[] inputManagers = FindObjectsByType<InputManager>(FindObjectsSortMode.None);
+            foreach(InputManager manager in inputManagers){
+                manager.SetCanShoot(false);
+            }
+            OnRoundEnded.Invoke();
+            }
         }
         else
         {

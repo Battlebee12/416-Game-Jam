@@ -11,6 +11,7 @@ public class InputManager : MonoBehaviour
     private KeyCode left = KeyCode.A;
 
     private bool timerEnded = false;
+    private bool canShoot = true;
 
     private void Start()
     {
@@ -27,7 +28,12 @@ public class InputManager : MonoBehaviour
         timerEnded = hasEnded;
     }
 
+    public void SetCanShoot(bool value){
+        canShoot = value;
+    }
+
     public int GetMovement2d(){
+        if(!canShoot) return 0;
         int movement_Int =0;
         if(Input.GetKey(left)){
             movement_Int = -1;
@@ -39,10 +45,10 @@ public class InputManager : MonoBehaviour
     }
 
     public bool GetJumping2d(){
-        return !timerEnded && Input.GetKeyDown(jump);
+        return canShoot && !timerEnded && Input.GetKeyDown(jump);
     }
 
     public bool IsShooting(){
-        return !timerEnded && Input.GetKeyDown(shoot);
+        return canShoot && !timerEnded && Input.GetKeyDown(shoot);
     }
 }

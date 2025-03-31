@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public class RoundTimerUI : MonoBehaviour
 {
-    public float roundTime = 5f; // Total round time
+    public float roundTime = 60f; // Total round time
     private float timer;
     public TextMeshProUGUI timerText;
     private bool timerEnded = false;
@@ -16,6 +16,13 @@ public class RoundTimerUI : MonoBehaviour
         timer = roundTime;
         Debug.Log("RoundTimerUI: timerText assigned in Start(). timerText: " + (timerText != null));
         UpdateTimerDisplay();
+
+        GameManager[] gameManagers = FindObjectsByType<GameManager>(FindObjectsSortMode.None);
+        foreach(GameManager manager in gameManagers){
+        if(manager != null){
+            manager.OnRoundEnded.AddListener(StopTimer);
+        }
+        }
         DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(timerText.gameObject);
     }
@@ -45,6 +52,10 @@ public class RoundTimerUI : MonoBehaviour
         {
             timerText.text = "Time: " + Mathf.CeilToInt(timer);
         }
+    }
+
+    void StopTimer(){
+        timerEnded = true;
     }
 
     public void SetNewRoundTime(float newRoundTime)
