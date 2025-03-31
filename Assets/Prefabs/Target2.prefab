@@ -92,10 +92,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8aa1b238961129408d013f16f400bc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxhealth: 100
+  maxhealth: 50
   currentHealth: 0
   playerID: 0
   tempRend: {fileID: 3869672464971411348}
+  OnDamageTaken:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTargetDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6915062418933306821
 GameObject:
   m_ObjectHideFlags: 0

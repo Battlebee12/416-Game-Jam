@@ -5,15 +5,19 @@ public class GunController : MonoBehaviour
 {
     [SerializeField] private InputManager inputManager;
     [SerializeField] private float minTimeBtwShots = 3f; // Time delay between shots
-    
+
     [SerializeField] private BallSo ballSO;
     [SerializeField] private Transform ballSpawnPostion;
     [SerializeField] private float speed;
     [SerializeField] private GunCooldownUI cooldownUI;
-    
+
     private bool canShoot = true;
     private float lastShotTime = 0f;
     public AudioClip shootSound;
+    void Start()
+    {
+        lastShotTime = Time.time - minTimeBtwShots; // Allows shooting right away
+    }
 
     void Update()
     {
@@ -22,7 +26,7 @@ public class GunController : MonoBehaviour
             lastShotTime = Time.time;
             AudioManager.Instance.PlaySFX(shootSound);
             StartCoroutine(Fire());
-            cooldownUI.StartCooldown(); 
+            cooldownUI.StartCooldown();
         }
     }
 
