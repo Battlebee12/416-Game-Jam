@@ -21,8 +21,10 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     public RoundManagerUI roundUI;
     public RoundTimerUI roundTimerUI;
 
-    public string[] roundScenes = { "Level1", "Level2", "Level3", "Level4" }; // Scene names
+    public string[] roundScenes = { "Level_1_art", "Level_2_art", "Level_3_art", "Level_4_art" }; // Scene names
     private int currentRoundIndex = 0;
+
+    public Button nextRoundButton;
 
 
     protected override void Awake()
@@ -241,6 +243,12 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         else
         {
             Debug.Log("GameManager: Round already ended.");
+        }
+    }
+
+    public void OnNextRoundButtonPressed(){
+        if(currentRoundIndex < roundScenes.Length - 1){
+            
         }
     }
 
