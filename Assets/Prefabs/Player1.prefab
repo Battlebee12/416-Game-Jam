@@ -272,6 +272,7 @@ MonoBehaviour:
   animator: {fileID: 308242687256466384}
   playerVisual: {fileID: 2492431901824414398}
   jumpSound: {fileID: 8300000, guid: 3793c963bfadce341a51c1ac8113244c, type: 3}
+  hitSound: {fileID: 8300000, guid: ae92c77d233049745a1d622561a35566, type: 3}
 --- !u!50 &1969714096711736280
 Rigidbody2D:
   serializedVersion: 5
