@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform playerVisual;
     private Vector3 local_scale;
     public AudioClip jumpSound;
+    public AudioClip hitSound;
 
     private void Start(){
         local_scale = new Vector3(playerVisual.localScale.x, playerVisual.localScale.y, playerVisual.localScale.z);
@@ -71,5 +72,11 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(0.3f); // Wait for 0.3 seconds
         animator.ResetTrigger("ATTACK");
     }
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ball"))
+        {
+            AudioManager.Instance.PlaySFX(hitSound);
+        }
+    }
 }
