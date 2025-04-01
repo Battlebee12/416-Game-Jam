@@ -749,6 +749,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 572439959017856667, guid: 966059b2ee156c14d927e557b4edce89, type: 3}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 572439959017856667, guid: 966059b2ee156c14d927e557b4edce89, type: 3}
       propertyPath: cooldownUI
       value: 
       objectReference: {fileID: 1486331948}
@@ -1147,6 +1151,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7508289897668356082, guid: c80c91f7d5e012a4498c845fea397b14, type: 3}
+      propertyPath: backgroundMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: fbe24f1b768b80c4ea58c1334f26b799, type: 3}
     - target: {fileID: 8151464744242755308, guid: c80c91f7d5e012a4498c845fea397b14, type: 3}
       propertyPath: m_LocalPosition.x
       value: 178.12808
