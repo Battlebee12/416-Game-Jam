@@ -14,7 +14,7 @@ Twist: Instead of controlling paddles, the players will control a character that
 
 Contributions:
 - Sarabroop - Player mechanics, such as the movement and shooting mechanics.
-- Keeran - Levels and Stage Hazards, Particles, Screen Shake.
+- Keeran - Levels and Stage Hazards, Particles, Screen Shake. PRs: [#9](https://github.com/Battlebee12/416-Game-Jam/pull/9)
 - Arhaan - UI
 - Zoe - Sound Effects and Game Manager
 
