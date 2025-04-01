@@ -74,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("ball"))
+        if (collision.gameObject.CompareTag("Ball"))
         {
             AudioManager.Instance.PlaySFX(hitSound);
         }
